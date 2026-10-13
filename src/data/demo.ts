@@ -28,9 +28,9 @@ export const FONTES = [
   "Censo / IBGE (demonstrativo)",
   "Tribunal Superior Eleitoral (demonstrativo)",
   "Secretaria Municipal de Assistência Social (demonstrativo)",
-];
+] as const;
 export const TIPOS = ["Absoluto", "Percentual", "Taxa"] as const;
-export const ANOS = [2019, 2020, 2021, 2022, 2023, 2024];
+export const ANOS: number[] = [2019, 2020, 2021, 2022, 2023, 2024];
 
 export type Indicador = {
   id: string;
@@ -78,7 +78,7 @@ export const SEED: Indicador[] = SERIES.flatMap(({ valores, ...s }) =>
     ...s,
     id: `${s.codigo}-${ANOS[i]}`,
     valor,
-    ano: ANOS[i],
+    ano: ANOS[i]!,
     arquivado: false,
     atualizadoEm: "2026-10-13T12:00:00.000Z",
   })),

@@ -244,8 +244,9 @@ function Csv() {
     const falta = COLS.filter((c) => !head.includes(c));
     if (falta.length) return setErro(`Colunas ausentes: ${falta.join(", ")}`);
     const out = rows.slice(1).filter((r) => r.some(Boolean)).map((r) => {
-      const o = Object.fromEntries(head.map((h, i) => [h, r[i] ?? ""]));
-      return { titulo: o.titulo, codigo: o.codigo || o.titulo.toUpperCase().slice(0, 12), descricao: o.descricao, categoria: o.categoria, tipo: o.tipo, unidade: o.unidade, valor: Number(o.valor.replace(",", ".")), ano: Number(o.ano), fonte: o.fonte };
+      const o = Object.fromEntries(head.map((h, i) => [h, r[i] ?? ""])) as Record<string, string>;
+      const g = (k: string) => o[k] ?? "";
+      return { titulo: g("titulo"), codigo: g("codigo") || g("titulo").toUpperCase().slice(0, 12), descricao: g("descricao"), categoria: g("categoria"), tipo: g("tipo"), unidade: g("unidade"), valor: Number(g("valor").replace(",", ".")), ano: Number(g("ano")), fonte: g("fonte") };
     });
     const inval = out.findIndex((o) => !o.titulo || isNaN(o.valor) || !o.ano || !CATEGORIAS.some((c) => c.id === o.categoria));
     if (inval >= 0) return setErro(`Linha ${inval + 2} inválida (verifique título, valor, ano e categoria).`);

@@ -16,7 +16,7 @@ export const Route = createFileRoute("/informacoes")({
   component: Info,
 });
 
-const GLOSSARIO = [
+const GLOSSARIO: [string, string][] = [
   ["Feminicídio", "Homicídio de mulher por razões da condição de sexo feminino (Lei nº 13.104/2015)."],
   ["Medida protetiva de urgência", "Determinação judicial para proteger a mulher em situação de violência (Lei Maria da Penha)."],
   ["Violência psicológica", "Conduta que cause dano emocional, humilhação, controle ou diminuição da autoestima."],

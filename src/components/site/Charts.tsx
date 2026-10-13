@@ -9,7 +9,7 @@ export const PALETTE = ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "v
 const tip = { contentStyle: { borderRadius: 8, border: "1px solid var(--border)", fontSize: 12 }, formatter: (v: number) => fmt(v) };
 const axis = { fontSize: 12, fill: "var(--muted-foreground)" };
 
-export function ChartCard({ title, periodo, fonte, children, className = "" }: { title: string; periodo: string; fonte?: string; children: ReactNode; className?: string }) {
+export function ChartCard({ title, periodo, fonte, children, className = "" }: { title: string; periodo: string; fonte?: string | undefined; children: ReactNode; className?: string }) {
   return (
     <figure className={`rounded-lg border bg-card p-5 ${className}`}>
       <figcaption className="mb-4">

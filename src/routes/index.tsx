@@ -21,7 +21,7 @@ const ICONS = [Users, Venus, ShieldCheck, BarChart3];
 
 function Index() {
   const lista = useIndicadoresAtivos();
-  const anoRef = Math.max(...lista.map((i) => i.ano), ANOS[ANOS.length - 1]);
+  const anoRef = Math.max(...lista.map((i) => i.ano), ANOS[ANOS.length - 1]!);
   const viol = serieDe(lista, "VIOL_REG");
   const mpu = serieDe(lista, "MPU");
   const linhas = ANOS.map((ano) => ({ ano: String(ano), viol: viol.find((v) => v.ano === ano)?.valor ?? 0, mpu: mpu.find((v) => v.ano === ano)?.valor ?? 0 }));
@@ -53,7 +53,7 @@ function Index() {
               const ant = s[s.length - 2];
               if (!atual) return null;
               const varr = ant ? ((atual.valor - ant.valor) / ant.valor) * 100 : null;
-              const Icon = ICONS[idx];
+              const Icon = ICONS[idx] ?? BarChart3;
               return (
                 <article key={cod} className="rounded-lg border bg-card p-5">
                   <div className="flex items-center justify-between">
