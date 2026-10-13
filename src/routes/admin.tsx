@@ -196,7 +196,7 @@ function Formulario({ inicial, onClose }: { inicial: Partial<Indicador>; onClose
     if (f.valor && isNaN(Number(f.valor.replace(",", ".")))) e.valor = "Informe um número";
     if (f.ano && !/^\d{4}$/.test(f.ano)) e.ano = "Ano com 4 dígitos";
     setErros(e);
-    if (Object.keys(e).length) return toast.error("Verifique os campos destacados.");
+    if (Object.keys(e).length) { toast.error("Verifique os campos destacados."); return; }
     actions.salvar({
       id: inicial.id, titulo: f.titulo.trim(), codigo: f.codigo.trim() || f.titulo.trim().toUpperCase().slice(0, 12), descricao: f.descricao.trim(),
       categoria: f.categoria, tipo: f.tipo, unidade: f.unidade.trim(), valor: Number(f.valor.replace(",", ".")), ano: Number(f.ano), fonte: f.fonte,

@@ -43,7 +43,7 @@ export function useIndicadoresAtivos() {
 }
 
 export const actions = {
-  salvar(ind: Omit<Indicador, "id" | "atualizadoEm" | "arquivado"> & { id?: string }) {
+  salvar(ind: Omit<Indicador, "id" | "atualizadoEm" | "arquivado"> & { id?: string | undefined }) {
     const s = get();
     const now = new Date().toISOString();
     if (ind.id) {
