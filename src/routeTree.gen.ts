@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as GraficosRouteImport } from './routes/graficos'
 import { Route as IndicadoresRouteImport } from './routes/indicadores'
 import { Route as InformacoesRouteImport } from './routes/informacoes'
@@ -17,6 +18,11 @@ import { Route as InformacoesRouteImport } from './routes/informacoes'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GraficosRoute = GraficosRouteImport.update({
@@ -37,12 +43,14 @@ const InformacoesRoute = InformacoesRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/graficos': typeof GraficosRoute
   '/indicadores': typeof IndicadoresRoute
   '/informacoes': typeof InformacoesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/graficos': typeof GraficosRoute
   '/indicadores': typeof IndicadoresRoute
   '/informacoes': typeof InformacoesRoute
@@ -50,20 +58,23 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
   '/graficos': typeof GraficosRoute
   '/indicadores': typeof IndicadoresRoute
   '/informacoes': typeof InformacoesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/graficos' | '/indicadores' | '/informacoes'
+  fullPaths: '/' | '/admin' | '/graficos' | '/indicadores' | '/informacoes'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/graficos' | '/indicadores' | '/informacoes'
-  id: '__root__' | '/' | '/graficos' | '/indicadores' | '/informacoes'
+  to: '/' | '/admin' | '/graficos' | '/indicadores' | '/informacoes'
+  id:
+    '__root__' | '/' | '/admin' | '/graficos' | '/indicadores' | '/informacoes'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
   GraficosRoute: typeof GraficosRoute
   IndicadoresRoute: typeof IndicadoresRoute
   InformacoesRoute: typeof InformacoesRoute
@@ -76,6 +87,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/graficos': {
@@ -104,6 +122,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
   GraficosRoute: GraficosRoute,
   IndicadoresRoute: IndicadoresRoute,
   InformacoesRoute: InformacoesRoute,
