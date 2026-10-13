@@ -32,7 +32,7 @@ function Index() {
       <section className="bg-institutional text-primary-foreground">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
           <p className="text-xs font-semibold uppercase tracking-widest opacity-80">Plataforma institucional de indicadores públicos</p>
-          <h1 className="mt-3 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">Dossiê da Mulher Itaquaquecetubense</h1>
+          <h1 className="mt-3 max-w-3xl text-4xl font-semibold leading-tight sm:text-5xl">Dossiê da Mulher Itaqua.</h1>
           <p className="mt-4 max-w-2xl text-lg opacity-90">Reúne, organiza e torna públicos dados sobre violência, saúde, educação, trabalho e participação das mulheres no município, para apoiar políticas públicas baseadas em evidências.</p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link to="/indicadores" className="inline-flex items-center gap-2 rounded-md bg-card px-5 py-2.5 font-medium text-primary hover:bg-secondary">Consultar indicadores <ArrowRight className="h-4 w-4" /></Link>
